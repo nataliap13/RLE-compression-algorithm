@@ -9,14 +9,13 @@ using System.IO;
 
 namespace ConsoleApp1
 {
-    static class Reader
+    class Reader
     {
-        static string filePath = @"C:\input.txt";
-        static public List<string> lines = File.ReadAllLines(filePath).ToList();
-        static public Dictionary<char, int> dict = new Dictionary<char, int>();
-
-        static public void read()
+        public Dictionary<char, int> read(string filePath)
         {
+            List<string> lines = File.ReadAllLines(filePath).ToList();
+            Dictionary<char, int> dict = new Dictionary<char, int>();
+
             // every line we read separately
             foreach (string line in lines)
             {
@@ -29,6 +28,7 @@ namespace ConsoleApp1
                         dict[line[i]] += 1;
                 }
             }
+            return dict;
         }
     }
 }
