@@ -24,5 +24,11 @@ namespace TIIK_proj
         {
             InitializeComponent();
         }
+
+        private void ButtonFileLoaderWindow_Click(object sender, RoutedEventArgs e)
+        {
+            new FileLoaderWindow().Show();
+            Close();
+        }
     }
 }
