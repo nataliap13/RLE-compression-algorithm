@@ -6,23 +6,25 @@
         xmlns:local="clr-namespace:TIIK_proj"
         mc:Ignorable="d"
         Title="FileLoaderWindow" Height="450" Width="800">
-	<Grid>
-		<Button Name="ButtonChooseFile" Content="Wybierz plik txt" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Click="ButtonChooseFile_Click"/>
-		<Button Name="ButtonReturn" Content="Powrót" HorizontalAlignment="Left" Margin="741,10,0,0" VerticalAlignment="Top" Click="ButtonReturn_Click"/>
-		<Label Name="LabelPath" Content="Path" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-		<TextBox Name="TextBoxFileContent" Margin="10,66,410,10" TextWrapping="Wrap" Text="Treść pliku"
+    <Grid>
+        <Button Name="ButtonChooseFile" Content="Wybierz plik txt" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Click="ButtonChooseFile_Click"/>
+        <Button Name="ButtonReturn" Content="Powrót" HorizontalAlignment="Left" Margin="741,10,0,0" VerticalAlignment="Top" Click="ButtonReturn_Click"/>
+        <Label Name="LabelPath" Content="Path" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <TextBox Name="TextBoxFileContent" Margin="10,66,410,10" TextWrapping="Wrap" Text="Treść pliku"
 		IsReadOnly="True"
          ScrollViewer.HorizontalScrollBarVisibility="Auto"
          ScrollViewer.VerticalScrollBarVisibility="Auto"
          ScrollViewer.CanContentScroll="True"/>
-		<Button Name="ButtonCountChars" Content="Zlicz znaki" HorizontalAlignment="Left" Margin="389,41,0,0" VerticalAlignment="Top" Click="ButtonCountChars_Click"/>
-		<Label Name="LabelCharsCount" Content="0" HorizontalAlignment="Left" Margin="464,35,0,0" VerticalAlignment="Top"/>
-		<DataGrid AutoGenerateColumns="False" HorizontalAlignment="Left" Name="dataGridCharsCount" Width="200" Margin="389,66,0,10" IsReadOnly="True">
-			<DataGrid.Columns >
-				<DataGridTextColumn Header="Kod ASCII" Binding="{Binding Path=ASCII}" MinWidth="50" />
-				<DataGridTextColumn Header="Znak" Binding="{Binding Path=Character}" MinWidth="50" />
-				<DataGridTextColumn Header="Liczba" Binding="{Binding Path=Count}" MinWidth="50" />
-			</DataGrid.Columns>
-		</DataGrid>
-	</Grid>
+        <Button Name="ButtonCountChars" Content="Zlicz znaki" HorizontalAlignment="Left" Margin="324,41,0,0" VerticalAlignment="Top" Click="ButtonCountChars_Click"/>
+        <Label Content="Wszystkie znaki" HorizontalAlignment="Left" Margin="389,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.792,0.513"/>
+        <Label Name="LabelCharsCount" Content="0" Margin="389,35,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.792,0.513" HorizontalAlignment="Left" Width="92"/>
+        <DataGrid AutoGenerateColumns="False" HorizontalAlignment="Left" Name="dataGridCharsCount" Width="270" Margin="389,66,0,10" IsReadOnly="True">
+            <DataGrid.Columns >
+                <DataGridTextColumn Header="Kod ASCII" Binding="{Binding Path=ASCII}" MinWidth="60" />
+                <DataGridTextColumn Header="Znak" Binding="{Binding Path=Character}" MinWidth="50" />
+                <DataGridTextColumn Header="Liczba" Binding="{Binding Path=Count}" MinWidth="50" />
+                <DataGridTextColumn Header="%" Binding="{Binding Path=Probability}" MinWidth="50" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
 </Window>

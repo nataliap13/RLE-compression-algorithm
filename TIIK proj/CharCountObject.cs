@@ -11,6 +11,7 @@ namespace TIIK_proj
         public char Character { get; set; }
         public int Count { get; set; }
         public int ASCII { get { return Character; } }
+        public double Probability { get; set; }
 
     }
 }

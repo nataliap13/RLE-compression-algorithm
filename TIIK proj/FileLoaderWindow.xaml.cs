@@ -17,6 +17,7 @@ using System.Windows.Shapes;
 
 namespace TIIK_proj
 {
+    //public enum EnumEncoding {UTF8, Unicode, ASCII }
     /// <summary>
     /// Logika interakcji dla klasy FileLoader.xaml
     /// </summary>
@@ -47,6 +48,7 @@ namespace TIIK_proj
         private void ButtonCountChars_Click(object sender, RoutedEventArgs e)
         {
             var textToAnalyze = TextBoxFileContent.Text;
+            var TxtLength = textToAnalyze.Length;
             LabelCharsCount.Content = textToAnalyze.Length;
             Dictionary<char, int> dict = new Dictionary<char, int>();
             foreach (var character in textToAnalyze)
@@ -59,7 +61,7 @@ namespace TIIK_proj
             var dictAsCharCountObjectList = new List<CharCountObject>();
             foreach (var pair in dict)
             {
-                dictAsCharCountObjectList.Add(new CharCountObject() { Character = pair.Key, Count = pair.Value });
+                dictAsCharCountObjectList.Add(new CharCountObject() { Character = pair.Key, Count = pair.Value, Probability = 100.0 * (double)pair.Value/ (double)TxtLength });
             }
             dataGridCharsCount.ItemsSource = dictAsCharCountObjectList;
         }
