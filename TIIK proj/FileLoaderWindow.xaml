@@ -22,12 +22,12 @@
         <Label Name="LabelPercentCount" Content="0" Margin="486,36,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.792,0.513" HorizontalAlignment="Left" Width="75"/>
         <Label Name="LabelPercentWarning" Content="" Margin="566,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.792,0.513" HorizontalAlignment="Left" Width="93"/>
         <Button Name="ButtonPercentReduction" Content="Uzyskaj 100%" HorizontalAlignment="Left" Margin="566,41,0,0" VerticalAlignment="Top" Width="93" Click="ButtonPercentReduction_Click"/>
-        <DataGrid AutoGenerateColumns="False" HorizontalAlignment="Left" Name="dataGridCharsCount" Width="270" Margin="389,66,0,10" IsReadOnly="True">
+        <DataGrid AutoGenerateColumns="False" HorizontalAlignment="Left" Name="dataGridCharsCount" Width="240" Margin="389,66,0,10" IsReadOnly="True">
             <DataGrid.Columns >
                 <DataGridTextColumn Header="Kod ASCII" Binding="{Binding Path=ASCII}" MinWidth="60" />
-                <DataGridTextColumn Header="Znak" Binding="{Binding Path=Character}" MinWidth="50" />
-                <DataGridTextColumn Header="Liczba" Binding="{Binding Path=Count}" MinWidth="50" />
-                <DataGridTextColumn Header="%" Binding="{Binding Path=Probability}" MinWidth="50" />
+                <DataGridTextColumn Header="Znak" Binding="{Binding Path=Character}" MinWidth="40" />
+                <DataGridTextColumn Header="Liczba" Binding="{Binding Path=Count}" MinWidth="40" />
+                <DataGridTextColumn Header="%" Binding="{Binding Path=ProbabilityAsString}" MinWidth="70" />
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

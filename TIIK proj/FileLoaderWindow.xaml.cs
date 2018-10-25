@@ -24,6 +24,7 @@ namespace TIIK_proj
     public partial class FileLoaderWindow : Window
     {
         List<CharCountObject> MainList;
+        const int factor = 100000;
         public FileLoaderWindow()
         {
             InitializeComponent();
@@ -62,18 +63,21 @@ namespace TIIK_proj
 
             //converting dictionary to list to display it in dataGrid
             var ListFromDictAsCharCountObjects = new List<CharCountObject>();
-            var percentCount = 0.000;
+            var percentCount = 0;
+            //var percentCount = 0.000;
             foreach (var pair in dictCharsAndFrequency)
             {
-                var prob = 100.0 * (double)pair.Value / (double)TxtLength;
-                prob = Math.Round(prob, 3);
-                if (prob == 0.000)
-                { prob = 0.001; }
+                int prob = (int)Math.Round((double)factor * (double)pair.Value / (double)TxtLength);
+                //int prob = (int)Math.Round((double)pair.Value / (double)TxtLength * (double)factor );
+                //var prob = 100.0 * (double)pair.Value / (double)TxtLength;
+                //prob = Math.Round(prob, 3);
+                if (prob < 1)
+                { prob = 1; }
                 percentCount += prob;
                 ListFromDictAsCharCountObjects.Add(new CharCountObject() { Character = pair.Key, Count = pair.Value, Probability = prob });
             }
 
-            if(percentCount!=100.0)
+            if(percentCount!= factor)
             { LabelPercentWarning.Content = "Wynik != 100%"; LabelPercentWarning.Foreground = Brushes.Red; }
             else
             { LabelPercentWarning.Content = "100%"; LabelPercentWarning.Foreground = Brushes.Black; }
@@ -81,35 +85,40 @@ namespace TIIK_proj
             var sortedList = ListFromDictAsCharCountObjects.OrderByDescending(x => x.Probability).ToList();//sort
             MainList = sortedList;
             dataGridCharsCount.ItemsSource = sortedList;
-            LabelPercentCount.Content = (percentCount == 100.000 ? 100.000 : percentCount);
+            string stringLabelPercentCount = percentCount.ToString().Insert(3,",");
+            LabelPercentCount.Content = stringLabelPercentCount;
         }
 
         private void ButtonPercentReduction_Click(object sender, RoutedEventArgs e)
         {
             var workList = MainList.OrderBy(x => x.Probability).ToList();//sort
-            foreach(var elem in workList)
+
+            var percent = 1;//initial value
+            while (percent != 0)
             {
-                var percent = 0.0;
-                foreach (var el in workList)
+                foreach (var elem in workList)
                 {
-                    percent += el.Probability;
+                    percent = 0;
+                    foreach (var el in workList)
+                    {
+                        percent += el.Probability;
+                    }
+                    percent -= factor;
+                    //LabelPercentWarning.Content = percent;
+                    //System.Threading.Thread.Sleep(3000);
+                    if (percent != 0)
+                    {
+                        if (elem.Probability != 1)
+                        { elem.Probability -= Math.Sign(percent); }
+                    }
+                    else break;
                 }
-                percent -= 100.0;
-                if (percent == 0.0)
-                { break; }
-                LabelPercentWarning.Content = percent;
-                //System.Threading.Thread.Sleep(3000);
-                if (percent != 0.0)
-                {
-                    elem.Probability -= Math.Sign(percent) * 0.001;
-                }
-                else break;
             }
 
             LabelPercentWarning.Content = "100%"; LabelPercentWarning.Foreground = Brushes.Black;
             MainList = workList.OrderByDescending(x => x.Probability).ToList();//sort
             dataGridCharsCount.ItemsSource = MainList;
-            LabelPercentCount.Content = (100.000);
+            LabelPercentCount.Content = (100);
         }
     }
 }
