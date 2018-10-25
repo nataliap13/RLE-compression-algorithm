@@ -5,30 +5,34 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TIIK_proj"
         mc:Ignorable="d"
-        Title="FileLoaderWindow" Height="450" Width="800">
+        Title="FileLoaderWindow" Height="450" Width="757"
+        WindowStartupLocation="CenterScreen">
     <Grid>
         <Button Name="ButtonChooseFile" Content="Wybierz plik txt" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Click="ButtonChooseFile_Click"/>
-        <Button Name="ButtonReturn" Content="Powrót" HorizontalAlignment="Left" Margin="741,10,0,0" VerticalAlignment="Top" Click="ButtonReturn_Click"/>
-        <Label Name="LabelPath" Content="Path" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <Button Name="ButtonExampleFile" Content="Załaduj przykład" HorizontalAlignment="Left" Margin="101,41,0,0" VerticalAlignment="Top" Click="ButtonExampleFile_Click"/>
+        <Button Name="ButtonReturn" Content="Powrót" Margin="0,4,10,0" VerticalAlignment="Top" Click="ButtonReturn_Click" HorizontalAlignment="Right" Width="41"/>
+        <Label Name="LabelPath" Content="Path" HorizontalAlignment="Left" Margin="10,4,0,0" VerticalAlignment="Top"/>
         <TextBox Name="TextBoxFileContent" Margin="10,66,0,10" TextWrapping="Wrap" Text="Treść pliku"
 		IsReadOnly="True"
          ScrollViewer.HorizontalScrollBarVisibility="Auto"
          ScrollViewer.VerticalScrollBarVisibility="Auto"
          ScrollViewer.CanContentScroll="True" HorizontalAlignment="Left" Width="372"/>
         <Button Name="ButtonCountChars" Content="Zlicz znaki" HorizontalAlignment="Left" Margin="324,41,0,0" VerticalAlignment="Top" Click="ButtonCountChars_Click"/>
-        <Label Content="Wszystkie znaki" HorizontalAlignment="Left" Margin="389,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.792,0.513"/>
-        <Label Name="LabelCharsCount" Content="0" Margin="389,35,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.792,0.513" HorizontalAlignment="Left" Width="92"/>
-        <Label Content="Suma %" HorizontalAlignment="Left" Margin="486,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.792,0.513" Width="75"/>
-        <Label Name="LabelPercentCount" Content="0" Margin="486,36,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.792,0.513" HorizontalAlignment="Left" Width="75"/>
-        <Label Name="LabelPercentWarning" Content="" Margin="566,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.792,0.513" HorizontalAlignment="Left" Width="93"/>
-        <Button Name="ButtonPercentReduction" Content="Uzyskaj 100%" HorizontalAlignment="Left" Margin="566,41,0,0" VerticalAlignment="Top" Width="93" Click="ButtonPercentReduction_Click"/>
-        <DataGrid AutoGenerateColumns="False" HorizontalAlignment="Left" Name="dataGridCharsCount" Width="240" Margin="389,66,0,10" IsReadOnly="True">
+        <Label Content="Liczba znaków" HorizontalAlignment="Left" Margin="389,4,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.792,0.513"/>
+        <Label Name="LabelCharsCount" Content="0" Margin="389,35,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.792,0.513" HorizontalAlignment="Left" Width="86"/>
+        <Label Content="Suma %" HorizontalAlignment="Left" Margin="480,4,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.792,0.513" Width="62"/>
+        <Label Name="LabelPercentCount" Content="0" Margin="480,35,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.792,0.513" HorizontalAlignment="Left" Width="62"/>
+        <Label Name="LabelPercentWarning" Content="" Margin="553,4,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.792,0.513" HorizontalAlignment="Left" Width="93"/>
+        <Button Name="ButtonPercentReduction" Content="Uzyskaj 100%" HorizontalAlignment="Left" Margin="547,41,0,0" VerticalAlignment="Top" Width="93" Click="ButtonPercentReduction_Click"/>
+        <DataGrid AutoGenerateColumns="False" HorizontalAlignment="Left" Name="dataGridCharsCount" Width="251" Margin="389,66,0,10" IsReadOnly="True">
             <DataGrid.Columns >
-                <DataGridTextColumn Header="Kod ASCII" Binding="{Binding Path=ASCII}" MinWidth="60" />
+                <DataGridTextColumn Header="Kod ASCII" Binding="{Binding Path=ASCII}" MinWidth="65" />
                 <DataGridTextColumn Header="Znak" Binding="{Binding Path=Character}" MinWidth="40" />
-                <DataGridTextColumn Header="Liczba" Binding="{Binding Path=Count}" MinWidth="40" />
+                <DataGridTextColumn Header="Liczba" Binding="{Binding Path=Count}" MinWidth="45" />
                 <DataGridTextColumn Header="%" Binding="{Binding Path=ProbabilityAsString}" MinWidth="70" />
             </DataGrid.Columns>
         </DataGrid>
+        <Button Name="ButtonEntrophy"  Content="Wylicz entropię" Margin="645,41,0,0" VerticalAlignment="Top" Click="ButtonEntrophy_Click" HorizontalAlignment="Left" Width="86"/>
+        <Label Name="LabelEntrophy" Content="" Margin="645,66,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="86"/>
     </Grid>
 </Window>

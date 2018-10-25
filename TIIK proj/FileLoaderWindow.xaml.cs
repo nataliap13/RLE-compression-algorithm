@@ -85,7 +85,7 @@ namespace TIIK_proj
             var sortedList = ListFromDictAsCharCountObjects.OrderByDescending(x => x.Probability).ToList();//sort
             MainList = sortedList;
             dataGridCharsCount.ItemsSource = sortedList;
-            string stringLabelPercentCount = percentCount.ToString().Insert(3,",");
+            string stringLabelPercentCount = percentCount.ToString().Insert(percentCount.ToString().Length-3,",");
             LabelPercentCount.Content = stringLabelPercentCount;
         }
 
@@ -118,7 +118,23 @@ namespace TIIK_proj
             LabelPercentWarning.Content = "100%"; LabelPercentWarning.Foreground = Brushes.Black;
             MainList = workList.OrderByDescending(x => x.Probability).ToList();//sort
             dataGridCharsCount.ItemsSource = MainList;
-            LabelPercentCount.Content = (100);
+            LabelPercentCount.Content = "100,000";
+        }
+
+        private void ButtonEntrophy_Click(object sender, RoutedEventArgs e)
+        {
+            double Entrophy = 0.0;
+            foreach(var item in MainList)
+            {
+                var prob = (double)item.Probability / factor;
+                Entrophy += prob * Math.Log(1.0/prob, 2.0);
+            }
+            LabelEntrophy.Content = Entrophy;
+        }
+
+        private void ButtonExampleFile_Click(object sender, RoutedEventArgs e)
+        {
+            TextBoxFileContent.Text = "aaaabbcd";
         }
     }
 }
