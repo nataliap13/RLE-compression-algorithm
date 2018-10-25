@@ -10,14 +10,18 @@
         <Button Name="ButtonChooseFile" Content="Wybierz plik txt" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Click="ButtonChooseFile_Click"/>
         <Button Name="ButtonReturn" Content="Powrót" HorizontalAlignment="Left" Margin="741,10,0,0" VerticalAlignment="Top" Click="ButtonReturn_Click"/>
         <Label Name="LabelPath" Content="Path" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-        <TextBox Name="TextBoxFileContent" Margin="10,66,410,10" TextWrapping="Wrap" Text="Treść pliku"
+        <TextBox Name="TextBoxFileContent" Margin="10,66,0,10" TextWrapping="Wrap" Text="Treść pliku"
 		IsReadOnly="True"
          ScrollViewer.HorizontalScrollBarVisibility="Auto"
          ScrollViewer.VerticalScrollBarVisibility="Auto"
-         ScrollViewer.CanContentScroll="True"/>
+         ScrollViewer.CanContentScroll="True" HorizontalAlignment="Left" Width="372"/>
         <Button Name="ButtonCountChars" Content="Zlicz znaki" HorizontalAlignment="Left" Margin="324,41,0,0" VerticalAlignment="Top" Click="ButtonCountChars_Click"/>
         <Label Content="Wszystkie znaki" HorizontalAlignment="Left" Margin="389,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.792,0.513"/>
         <Label Name="LabelCharsCount" Content="0" Margin="389,35,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.792,0.513" HorizontalAlignment="Left" Width="92"/>
+        <Label Content="Suma %" HorizontalAlignment="Left" Margin="486,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.792,0.513" Width="75"/>
+        <Label Name="LabelPercentCount" Content="0" Margin="486,36,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.792,0.513" HorizontalAlignment="Left" Width="75"/>
+        <Label Name="LabelPercentWarning" Content="" Margin="566,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.792,0.513" HorizontalAlignment="Left" Width="93"/>
+        <Button Name="ButtonPercentReduction" Content="Uzyskaj 100%" HorizontalAlignment="Left" Margin="566,41,0,0" VerticalAlignment="Top" Width="93" Click="ButtonPercentReduction_Click"/>
         <DataGrid AutoGenerateColumns="False" HorizontalAlignment="Left" Name="dataGridCharsCount" Width="270" Margin="389,66,0,10" IsReadOnly="True">
             <DataGrid.Columns >
                 <DataGridTextColumn Header="Kod ASCII" Binding="{Binding Path=ASCII}" MinWidth="60" />
