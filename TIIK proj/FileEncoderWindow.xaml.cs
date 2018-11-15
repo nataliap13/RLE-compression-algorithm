@@ -34,36 +34,55 @@ namespace TIIK_proj
         public static bool IsValid(string str)
         {
             int i;
-            return int.TryParse(str, out i) && i >= 0 && i <= 9999;
-        }
-
-        //private void TextBoxSeparatorASCII_PreviewTextInput(object sender, TextCompositionEventArgs e)
-        private void TextBoxSeparatorASCII_PreviewTextInput(object sender, TextCompositionEventArgs e)
-        {
-            ////Regex regex = new Regex("[^0-9]+");
-            //bool isValid = IsValid(((TextBox)sender).Text + e.Text);
-            //if (isValid)
-            //{ TextBoxSeparatorChar.Text = ((char)Convert.ToInt32(((TextBox)sender).Text + e.Text)).ToString(); }
-            //e.Handled = !isValid;
-        }
-
-        private void TextBoxSeparatorChar_PreviewTextInput(object sender, TextCompositionEventArgs e)
-        {
-
+            return (int.TryParse(str, out i) && i >= 0 && i <= 9999);
         }
 
         private void TextBoxSeparatorChar_TextChanged(object sender, TextChangedEventArgs e)
         {
-
+            //bool isValid = false;
+            //if(TextBoxSeparatorChar.Text.Count() <2)
+            //{ isValid = true; }
+            //if (isValid)
+            //{ TextBoxSeparatorASCII.Text = ((int)(((TextBox)sender).Text[0])).ToString(); }
+            ////{ TextBoxSeparatorASCII.Text = TextBoxSeparatorChar.Text.Count().ToString(); }
+            //e.Handled = !isValid;
         }
 
         private void TextBoxSeparatorASCII_TextChanged(object sender, TextChangedEventArgs e)
         {
-            bool isValid = IsValid(((TextBox)sender).Text);
+            //bool isValid = IsValid(((TextBox)sender).Text);
+            //if (isValid)
+            //{ TextBoxSeparatorChar.Text = ((char)Convert.ToInt32(((TextBox)sender).Text)).ToString(); }
+            //e.Handled = !isValid;
+        }
+        private void TextBoxSeparatorChar_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            bool isValid = false;
+            if (TextBoxSeparatorChar.Text.Count() < 2)
+            { isValid = true; }
             if (isValid)
-            { TextBoxSeparatorChar.Text = ((char)Convert.ToInt32(((TextBox)sender).Text)).ToString(); }
+            {
+                try
+                {
+                    TextBoxSeparatorASCII.Text = ((int)(e.Text[0])).ToString();
+                }
+                catch (Exception) { }
+            }
+
+            //{ TextBoxSeparatorASCII.Text = TextBoxSeparatorChar.Text.Count().ToString(); }
             e.Handled = !isValid;
         }
+        private void TextBoxSeparatorASCII_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            //Regex regex = new Regex("[^0-9]+");
+            bool isValid = IsValid(((TextBox)sender).Text + e.Text);
+            //bool isValid = TextBoxSeparatorChar.Text.Count() == 1 ? true : false;
+            if (isValid)
+            { TextBoxSeparatorChar.Text = ((char)Convert.ToInt32(((TextBox)sender).Text + e.Text)).ToString(); }
+            e.Handled = !isValid;
+        }
+
+
 
         private void ButtonChooseFile_Click(object sender, RoutedEventArgs e)
         {
