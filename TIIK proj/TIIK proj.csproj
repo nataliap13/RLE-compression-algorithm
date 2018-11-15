@@ -56,6 +56,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="CharCountObject.cs" />
+    <Page Include="FileEncoderWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="FileLoaderWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -67,6 +71,10 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="EncodingRLE.cs" />
+    <Compile Include="FileEncoderWindow.xaml.cs">
+      <DependentUpon>FileEncoderWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="FileLoaderWindow.xaml.cs">
       <DependentUpon>FileLoaderWindow.xaml</DependentUpon>

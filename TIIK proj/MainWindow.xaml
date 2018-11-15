@@ -8,7 +8,8 @@
         Title="MainWindow" Height="450" Width="800"
         WindowStartupLocation="CenterScreen">
     <Grid>
-		<Button Name="ButtonFileLoaderWindow" Content="Załaduj plik txt" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Click="ButtonFileLoaderWindow_Click"/>
+		<Button Name="ButtonFileLoaderWindow" Content="Załaduj plik txt" HorizontalAlignment="Left" Margin="200,150,0,0" VerticalAlignment="Top" Click="ButtonFileLoaderWindow_Click"/>
+        <Button Name="ButtonFileEncoderWindow" Content="Zakoduj plik txt" HorizontalAlignment="Left" Margin="287,150,0,0" VerticalAlignment="Top" Click="ButtonFileEncoderWindow_Click"/>
 
-	</Grid>
+    </Grid>
 </Window>

@@ -30,5 +30,11 @@ namespace TIIK_proj
             new FileLoaderWindow().Show();
             Close();
         }
+
+        private void ButtonFileEncoderWindow_Click(object sender, RoutedEventArgs e)
+        {
+            new FileEncoderWindow().Show();
+            Close();
+        }
     }
 }
