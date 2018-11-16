@@ -5,15 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TIIK_proj"
         mc:Ignorable="d"
-        Title="FileLoaderWindow" Height="450" Width="757"
+        Title="Obliczenia statystyczne" Height="450" Width="757"
         WindowStartupLocation="CenterScreen">
     <Grid>
         <Button Name="ButtonChooseFile" Content="Wybierz plik txt" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Click="ButtonChooseFile_Click"/>
         <Button Name="ButtonExampleFile" Content="Załaduj przykład" HorizontalAlignment="Left" Margin="101,41,0,0" VerticalAlignment="Top" Click="ButtonExampleFile_Click"/>
         <Button Name="ButtonReturn" Content="Powrót" Margin="0,4,10,0" VerticalAlignment="Top" Click="ButtonReturn_Click" HorizontalAlignment="Right" Width="41"/>
         <Label Name="LabelPath" Content="Path" HorizontalAlignment="Left" Margin="10,4,0,0" VerticalAlignment="Top"/>
-        <TextBox Name="TextBoxFileContent" Margin="10,66,0,10" TextWrapping="Wrap" Text="Treść pliku"
-		IsReadOnly="True"
+        <!--IsReadOnly="True"-->
+        <TextBox Name="TextBoxFileContent" Margin="10,66,0,10" TextWrapping="Wrap" Text="Treść pliku"		
          ScrollViewer.HorizontalScrollBarVisibility="Auto"
          ScrollViewer.VerticalScrollBarVisibility="Auto"
          ScrollViewer.CanContentScroll="True" HorizontalAlignment="Left" Width="372"/>

@@ -31,12 +31,12 @@ namespace TIIK_proj
         }
 
         // Do the validation in a separate function which can be reused
-        public static bool IsValid(string str)
+        public static bool IsOnlyNumbers(string str)
         {
             int i;
             return (int.TryParse(str, out i) && i >= 0 && i <= 9999);
         }
-
+        /*
         private void TextBoxSeparatorChar_TextChanged(object sender, TextChangedEventArgs e)
         {
             //bool isValid = false;
@@ -54,11 +54,11 @@ namespace TIIK_proj
             //if (isValid)
             //{ TextBoxSeparatorChar.Text = ((char)Convert.ToInt32(((TextBox)sender).Text)).ToString(); }
             //e.Handled = !isValid;
-        }
+        }*/
         private void TextBoxSeparatorChar_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             bool isValid = false;
-            if (TextBoxSeparatorChar.Text.Count() < 2)
+            if (TextBoxSeparatorChar.Text.Count() < 1)
             { isValid = true; }
             if (isValid)
             {
@@ -75,7 +75,7 @@ namespace TIIK_proj
         private void TextBoxSeparatorASCII_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             //Regex regex = new Regex("[^0-9]+");
-            bool isValid = IsValid(((TextBox)sender).Text + e.Text);
+            bool isValid = IsOnlyNumbers(((TextBox)sender).Text + e.Text);
             //bool isValid = TextBoxSeparatorChar.Text.Count() == 1 ? true : false;
             if (isValid)
             { TextBoxSeparatorChar.Text = ((char)Convert.ToInt32(((TextBox)sender).Text + e.Text)).ToString(); }
@@ -108,7 +108,11 @@ namespace TIIK_proj
 
         private void ButtonEncode_Click(object sender, RoutedEventArgs e)
         {
-            //TextBoxAfterCodingContent = EncodingRLE.Encode(TextBoxFileContent.Text, );
+            char separator = TextBoxSeparatorChar.Text[0];
+            if ((int)separator == Convert.ToInt32(TextBoxSeparatorASCII.Text))
+            {
+                TextBoxAfterCodingContent.Text = EncodingRLE.Encode(TextBoxFileContent.Text, separator);
+            }
         }
 
         private void ButtonDecode_Click(object sender, RoutedEventArgs e)
@@ -116,9 +120,37 @@ namespace TIIK_proj
 
         }
 
-        private void ButtonSaveFile_Click(object sender, RoutedEventArgs e)
+        private void ButtonSaveFileLeft_Click(object sender, RoutedEventArgs e)
         {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Text file (*.txt)|*.txt";
+            saveFileDialog.FileName = "Origin_1";
 
+            if (saveFileDialog.ShowDialog() == true)
+            {
+                File.WriteAllText(saveFileDialog.FileName, TextBoxFileContent.Text);
+            }
+        }
+
+        private void ButtonSaveFileRight_Click(object sender, RoutedEventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Text file (*.txt)|*.txt";
+            saveFileDialog.FileName = "Aftercoding_1";
+            //saveFileDialog.OverwritePrompt = false;
+            /*int iterator = 1;
+            while (File.Exists(saveFileDialog.FileName))
+            {
+                //MessageBox.Show("Istnieje plik " + saveFileDialog.FileName);
+                iterator++;
+                saveFileDialog.FileName = "Aftercoding_" + iterator;
+                //MessageBox.Show("FileName " + saveFileDialog.FileName + "!");
+            }*/
+
+            if (saveFileDialog.ShowDialog() == true)
+            {
+                File.WriteAllText(saveFileDialog.FileName, TextBoxAfterCodingContent.Text);
+            }
         }
     }
 }
