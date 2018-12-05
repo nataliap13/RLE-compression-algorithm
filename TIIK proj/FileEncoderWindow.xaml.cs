@@ -26,63 +26,14 @@ namespace TIIK_proj
         public FileEncoderWindow()
         {
             InitializeComponent();
-            TextBoxSeparatorChar.Text = "?";
-            TextBoxSeparatorASCII.Text = ((int)'?').ToString();
         }
 
-        // Do the validation in a separate function which can be reused
+        /*// Do the validation in a separate function which can be reused
         public static bool IsOnlyNumbers(string str)
         {
             int i;
             return (int.TryParse(str, out i) && i >= 0 && i <= 9999);
-        }
-        /*
-        private void TextBoxSeparatorChar_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            //bool isValid = false;
-            //if(TextBoxSeparatorChar.Text.Count() <2)
-            //{ isValid = true; }
-            //if (isValid)
-            //{ TextBoxSeparatorASCII.Text = ((int)(((TextBox)sender).Text[0])).ToString(); }
-            ////{ TextBoxSeparatorASCII.Text = TextBoxSeparatorChar.Text.Count().ToString(); }
-            //e.Handled = !isValid;
-        }
-
-        private void TextBoxSeparatorASCII_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            //bool isValid = IsValid(((TextBox)sender).Text);
-            //if (isValid)
-            //{ TextBoxSeparatorChar.Text = ((char)Convert.ToInt32(((TextBox)sender).Text)).ToString(); }
-            //e.Handled = !isValid;
         }*/
-        private void TextBoxSeparatorChar_PreviewTextInput(object sender, TextCompositionEventArgs e)
-        {
-            bool isValid = false;
-            if (TextBoxSeparatorChar.Text.Count() < 1)
-            { isValid = true; }
-            if (isValid)
-            {
-                try
-                {
-                    TextBoxSeparatorASCII.Text = ((int)(e.Text[0])).ToString();
-                }
-                catch (Exception) { }
-            }
-
-            //{ TextBoxSeparatorASCII.Text = TextBoxSeparatorChar.Text.Count().ToString(); }
-            e.Handled = !isValid;
-        }
-        private void TextBoxSeparatorASCII_PreviewTextInput(object sender, TextCompositionEventArgs e)
-        {
-            //Regex regex = new Regex("[^0-9]+");
-            bool isValid = IsOnlyNumbers(((TextBox)sender).Text + e.Text);
-            //bool isValid = TextBoxSeparatorChar.Text.Count() == 1 ? true : false;
-            if (isValid)
-            { TextBoxSeparatorChar.Text = ((char)Convert.ToInt32(((TextBox)sender).Text + e.Text)).ToString(); }
-            e.Handled = !isValid;
-        }
-
-
 
         private void ButtonChooseFile_Click(object sender, RoutedEventArgs e)
         {
@@ -108,11 +59,8 @@ namespace TIIK_proj
 
         private void ButtonEncode_Click(object sender, RoutedEventArgs e)
         {
-            char separator = TextBoxSeparatorChar.Text[0];
-            if ((int)separator == Convert.ToInt32(TextBoxSeparatorASCII.Text))
-            {
-                TextBoxAfterCodingContent.Text = EncodingRLE.Encode(TextBoxFileContent.Text, separator);
-            }
+            TextBoxAfterCodingContent.Text = EncodingRLE.Encode(TextBoxFileContent.Text);
+            TextBlockCharsCount.Text = TextBoxAfterCodingContent.Text.Length.ToString();
         }
 
         private void ButtonDecode_Click(object sender, RoutedEventArgs e)
