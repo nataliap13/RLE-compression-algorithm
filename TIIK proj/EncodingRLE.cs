@@ -7,7 +7,6 @@ namespace TIIK_proj
     {
         private static string ToEncode;
         private static string Encoded;
-        public const int MagicNumber = 9;
         // spliting big string and give parametrs  to append function in format for example A2 b2 c17
         public static string Encode(string TextToEncode)
         {
