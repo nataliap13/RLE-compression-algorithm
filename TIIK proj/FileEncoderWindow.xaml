@@ -5,27 +5,35 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TIIK_proj"
         mc:Ignorable="d"
+        ResizeMode="NoResize"
         Title="Kodowanie i kompresja" Height="450" Width="778"
         WindowStartupLocation="CenterScreen">
     <Grid>
-        <Button Name="ButtonChooseFile" Content="Wybierz plik txt" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Click="ButtonChooseFile_Click"/>
-        <Button Name="ButtonExampleFile" Content="Załaduj przykład" HorizontalAlignment="Left" Margin="101,41,0,0" VerticalAlignment="Top" Click="ButtonExampleFile_Click"/>
+        <Button Name="ButtonChooseFile" Content="Wybierz plik" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Click="ButtonChooseFile_Click"/>
+
+        <TextBlock HorizontalAlignment="Left" Margin="84,41,0,0" TextWrapping="Wrap" Text="Liczba znaków: " VerticalAlignment="Top"/>
+        <TextBlock Name="TextBlockOriginalCharsCount" HorizontalAlignment="Left" Margin="171,41,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top"/>
+
         <Button Name="ButtonReturn" Content="Powrót" Margin="0,4,10,0" VerticalAlignment="Top" Click="ButtonReturn_Click" HorizontalAlignment="Right" Width="41"/>
         <Label Name="LabelPath" Content="Path" HorizontalAlignment="Left" Margin="10,4,0,0" VerticalAlignment="Top"/>
-        <TextBox Name="TextBoxFileContent" Margin="10,66,388,10" TextWrapping="Wrap" Text="Treść pliku"
+        <TextBox Name="TextBoxFileContent" Margin="10,66,0,10" TextWrapping="Wrap" Text="Treść pliku"
          ScrollViewer.HorizontalScrollBarVisibility="Auto"
          ScrollViewer.VerticalScrollBarVisibility="Auto"
-         ScrollViewer.CanContentScroll="True"/>
+         ScrollViewer.CanContentScroll="True" HorizontalAlignment="Left" Width="372"/>
 
         <TextBox Name="TextBoxAfterCodingContent" Margin="388,66,10,10" TextWrapping="Wrap" Text="Treść pliku"
          ScrollViewer.HorizontalScrollBarVisibility="Auto"
          ScrollViewer.VerticalScrollBarVisibility="Auto"
          ScrollViewer.CanContentScroll="True"/>
-        <Button Name="ButtonSaveFileLeft" Content="Zapisz plik" HorizontalAlignment="Left" Margin="197,41,0,0" VerticalAlignment="Top" Click="ButtonSaveFileLeft_Click"/>
-        <Button Name="ButtonEncode" Content="Zakoduj" HorizontalAlignment="Left" Margin="332,16,0,0" VerticalAlignment="Top" Width="50" Click="ButtonEncode_Click"/>
-        <Button Name="ButtonDecode" Content="Odkoduj" HorizontalAlignment="Left" Margin="332,41,0,0" VerticalAlignment="Top" Width="50" Click="ButtonDecode_Click"/>
+        <Button Name="ButtonSaveFileLeft" Content="Zapisz plik" HorizontalAlignment="Left" Margin="212,41,0,0" VerticalAlignment="Top" Click="ButtonSaveFileLeft_Click"/>
+        <Button Name="ButtonEncode" Content="Zakoduj" Margin="277,41,0,0" VerticalAlignment="Top" Click="ButtonEncode_Click" HorizontalAlignment="Left" Width="50"/>
+        <Button Name="ButtonDecode" Content="Odkoduj" Margin="332,41,0,0" VerticalAlignment="Top" Click="ButtonDecode_Click" HorizontalAlignment="Left" Width="50"/>
         <Button Name="ButtonSaveFileRight" Content="Zapisz plik" HorizontalAlignment="Left" Margin="387,41,0,0" VerticalAlignment="Top" Click="ButtonSaveFileRight_Click"/>
-        <TextBlock HorizontalAlignment="Left" Margin="388,17,0,0" TextWrapping="Wrap" Text="Liczba znaków: " VerticalAlignment="Top"/>
-        <TextBlock Name="TextBlockCharsCount" HorizontalAlignment="Left" Margin="475,17,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
+
+        <TextBlock HorizontalAlignment="Left" Margin="452,41,0,0" TextWrapping="Wrap" Text="Liczba znaków: " VerticalAlignment="Top"/>
+        <TextBlock Name="TextBlockResultCharsCount" HorizontalAlignment="Left" Margin="550,41,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="615,41,0,0" TextWrapping="Wrap" Text="Czas: " VerticalAlignment="Top"/>
+        <TextBlock Name="TextBlockTime" HorizontalAlignment="Left" Margin="650,41,0,0" TextWrapping="NoWrap"  Text="0" VerticalAlignment="Top" Width="65"/>
+        <TextBlock HorizontalAlignment="Left" Margin="720,41,0,0" TextWrapping="Wrap" Text="s" VerticalAlignment="Top"/>
     </Grid>
 </Window>

@@ -1,24 +1,23 @@
 ﻿using System;
-
+using System.Collections.Generic;
 
 namespace TIIK_proj
 {
     public static class EncodingRLE
     {
-        private static string ToEncode;
         private static string Encoded;
         // spliting big string and give parametrs  to append function in format for example A2 b2 c17
-        public static string Encode(string TextToEncode)
+        public static string Encode(List<char> TextToEncode)
         {
-            ToEncode = TextToEncode;
+            var ToEncode = TextToEncode;
             Encoded = string.Empty;
 
             //Console.WriteLine("Starting encoding " + ToEncode);
             int numberOfOccurences = -1;
 
-            while (ToEncode.Length > 1)
+            while (ToEncode.Count > 1)
             {
-                if (ToEncode[0] == ToEncode[1] && numberOfOccurences < UInt16.MaxValue)
+                if (ToEncode[0] == ToEncode[1] && numberOfOccurences < char.MaxValue)
                 { numberOfOccurences++; }
                 else
                 {
@@ -26,10 +25,10 @@ namespace TIIK_proj
                     AppendToEncodedResult(ToEncode[0], numberOfOccurences);
                     numberOfOccurences = -1;
                 }
-                ToEncode = ToEncode.Remove(0, 1);
+                ToEncode.RemoveAt(0);
             }
 
-            if (ToEncode.Length == 1)
+            if (ToEncode.Count == 1)
             {
                 //Console.WriteLine("2.passed this parameter: " + ToEncode[i + 1] + numberOfOccurences);
                 AppendToEncodedResult(ToEncode[0], numberOfOccurences);

@@ -44,6 +44,7 @@ namespace TIIK_proj
                 LabelPath.Content = openFileDialog.FileName;
                 TextBoxFileContent.Text = File.ReadAllText(openFileDialog.FileName);
             }
+            TextBlockOriginalCharsCount.Text = TextBoxFileContent.Text.Length.ToString();
         }
 
         private void ButtonReturn_Click(object sender, RoutedEventArgs e)
@@ -52,15 +53,14 @@ namespace TIIK_proj
             Close();
         }
 
-        private void ButtonExampleFile_Click(object sender, RoutedEventArgs e)
-        {
-            TextBoxFileContent.Text = "aaaabbcd";
-        }
-
         private void ButtonEncode_Click(object sender, RoutedEventArgs e)
         {
-            TextBoxAfterCodingContent.Text = EncodingRLE.Encode(TextBoxFileContent.Text);
-            TextBlockCharsCount.Text = TextBoxAfterCodingContent.Text.Length.ToString();
+            TextBlockOriginalCharsCount.Text = TextBoxFileContent.Text.Length.ToString();
+            var begin = DateTime.Now;
+            TextBoxAfterCodingContent.Text = EncodingRLE.Encode(TextBoxFileContent.Text.ToList());
+            var end = DateTime.Now;
+            TextBlockResultCharsCount.Text = TextBoxAfterCodingContent.Text.Length.ToString();
+            TextBlockTime.Text = (end - begin).TotalSeconds.ToString();
         }
 
         private void ButtonDecode_Click(object sender, RoutedEventArgs e)
@@ -72,7 +72,7 @@ namespace TIIK_proj
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
             saveFileDialog.Filter = "Text file (*.txt)|*.txt";
-            saveFileDialog.FileName = "Origin_1";
+            saveFileDialog.FileName = TextBoxFileContent.Text.Length.ToString();
 
             if (saveFileDialog.ShowDialog() == true)
             {
@@ -84,7 +84,7 @@ namespace TIIK_proj
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
             saveFileDialog.Filter = "Text file (*.txt)|*.txt";
-            saveFileDialog.FileName = "Aftercoding_1";
+            saveFileDialog.FileName = TextBoxFileContent.Text.Length + "_RLE";
             //saveFileDialog.OverwritePrompt = false;
             /*int iterator = 1;
             while (File.Exists(saveFileDialog.FileName))
