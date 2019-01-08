@@ -52,7 +52,7 @@ namespace TIIK_proj
                 EncodedList.Add((char)count);
             }*/
         }
-
+        /*
         public static string Decode(string toDecode)
         {
             //int toDecodeLen = toDecode.Length;
@@ -76,8 +76,8 @@ namespace TIIK_proj
             if (toDecode.Length == 1)
             { decoded += toDecode[0]; }
             return decoded;
-        }
-        /*
+        }*/
+        ///*
         public static string Decode(string TextToDecode)
         {
             List<char> toDecode = TextToDecode.ToList();
@@ -102,7 +102,7 @@ namespace TIIK_proj
             if (toDecode.Count == 1)
             { decoded += toDecode[0]; }
             return decoded;
-        }*/
+        }//*/
     }
 }
 
