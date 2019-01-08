@@ -72,7 +72,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="EncodingRLE.cs" />
+    <Compile Include="RLE.cs" />
     <Compile Include="FileEncoderWindow.xaml.cs">
       <DependentUpon>FileEncoderWindow.xaml</DependentUpon>
     </Compile>

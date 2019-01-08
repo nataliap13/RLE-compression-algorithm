@@ -35,16 +35,28 @@ namespace TIIK_proj
             return (int.TryParse(str, out i) && i >= 0 && i <= 9999);
         }*/
 
-        private void ButtonChooseFile_Click(object sender, RoutedEventArgs e)
+        private void ButtonChooseFileLeft_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "Text files (*.txt)|*.txt";
             if (openFileDialog.ShowDialog() == true)
             {
                 LabelPath.Content = openFileDialog.FileName;
-                TextBoxFileContent.Text = File.ReadAllText(openFileDialog.FileName);
+                TextBoxLeft.Text = File.ReadAllText(openFileDialog.FileName);
             }
-            TextBlockOriginalCharsCount.Text = TextBoxFileContent.Text.Length.ToString();
+            TextBlockLeftCharsCount.Text = TextBoxLeft.Text.Length.ToString();
+        }
+
+        private void ButtonChooseFileRight_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Text files (*.txt)|*.txt";
+            if (openFileDialog.ShowDialog() == true)
+            {
+                LabelPath.Content = openFileDialog.FileName;
+                TextBoxRight.Text = File.ReadAllText(openFileDialog.FileName);
+            }
+            TextBlockRightCharsCount.Text = TextBoxRight.Text.Length.ToString();
         }
 
         private void ButtonReturn_Click(object sender, RoutedEventArgs e)
@@ -55,28 +67,38 @@ namespace TIIK_proj
 
         private void ButtonEncode_Click(object sender, RoutedEventArgs e)
         {
-            TextBlockOriginalCharsCount.Text = TextBoxFileContent.Text.Length.ToString();
+            TextBlockLeftCharsCount.Text = TextBoxLeft.Text.Length.ToString();
             var begin = DateTime.Now;
-            TextBoxAfterCodingContent.Text = EncodingRLE.Encode(TextBoxFileContent.Text.ToList());
+            TextBoxRight.Text = RLE.Encode(TextBoxLeft.Text);
             var end = DateTime.Now;
-            TextBlockResultCharsCount.Text = TextBoxAfterCodingContent.Text.Length.ToString();
+            TextBlockRightCharsCount.Text = TextBoxRight.Text.Length.ToString();
             TextBlockTime.Text = (end - begin).TotalSeconds.ToString();
         }
 
         private void ButtonDecode_Click(object sender, RoutedEventArgs e)
         {
-
+            try
+            {
+                TextBlockRightCharsCount.Text = TextBoxRight.Text.Length.ToString();
+                var begin = DateTime.Now;
+                TextBoxLeft.Text = RLE.Decode(TextBoxRight.Text);
+                var end = DateTime.Now;
+                TextBlockLeftCharsCount.Text = TextBoxLeft.Text.Length.ToString();
+                TextBlockTime.Text = (end - begin).TotalSeconds.ToString();
+            }
+            catch( Exception ex)
+            { MessageBox.Show("Błąd. Niepoprawna struktura pliku."); }
         }
 
         private void ButtonSaveFileLeft_Click(object sender, RoutedEventArgs e)
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
             saveFileDialog.Filter = "Text file (*.txt)|*.txt";
-            saveFileDialog.FileName = TextBoxFileContent.Text.Length.ToString();
+            saveFileDialog.FileName = TextBoxLeft.Text.Length.ToString();
 
             if (saveFileDialog.ShowDialog() == true)
             {
-                File.WriteAllText(saveFileDialog.FileName, TextBoxFileContent.Text);
+                File.WriteAllText(saveFileDialog.FileName, TextBoxLeft.Text);
             }
         }
 
@@ -84,7 +106,7 @@ namespace TIIK_proj
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
             saveFileDialog.Filter = "Text file (*.txt)|*.txt";
-            saveFileDialog.FileName = TextBoxFileContent.Text.Length + "_RLE";
+            saveFileDialog.FileName = TextBoxLeft.Text.Length + "_RLE";
             //saveFileDialog.OverwritePrompt = false;
             /*int iterator = 1;
             while (File.Exists(saveFileDialog.FileName))
@@ -97,7 +119,7 @@ namespace TIIK_proj
 
             if (saveFileDialog.ShowDialog() == true)
             {
-                File.WriteAllText(saveFileDialog.FileName, TextBoxAfterCodingContent.Text);
+                File.WriteAllText(saveFileDialog.FileName, TextBoxRight.Text);
             }
         }
     }
